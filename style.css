@@ -20,13 +20,7 @@ th {
   margin: 3.5em 0;
 }
 
-@media (min-width:468px) {
-  #container {
-    min-height: 44vh;
-  }
-}
-
-@media (min-width:768px) {
+@media (min-width:600px) {
   #container {
     min-height: 72vh;
   }
