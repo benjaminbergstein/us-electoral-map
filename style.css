@@ -17,7 +17,7 @@ th {
 #container {
   position: relative;
   width: 100%;
-  margin: 2em 0;
+  margin: 3.5em 0;
 }
 
 @media (min-width:468px) {
@@ -28,6 +28,6 @@ th {
 
 @media (min-width:768px) {
   #container {
-    min-height: 74vh;
+    min-height: 72vh;
   }
 }
