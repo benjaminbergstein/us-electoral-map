@@ -13,3 +13,21 @@ th {
   color: white;
   text-shadow: 1px 1px 1px black;
 }
+
+#container {
+  position: relative;
+  width: 100%;
+  margin: 2em 0;
+}
+
+@media (min-width:468px) {
+  #container {
+    min-height: 44vh;
+  }
+}
+
+@media (min-width:768px) {
+  #container {
+    min-height: 74vh;
+  }
+}

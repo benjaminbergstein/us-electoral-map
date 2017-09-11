@@ -1,28 +1,35 @@
+head
+  title US Electoral College Map
+  link rel="shortcut icon" href="favicon.ico"
+  link type='text/css' rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+  link type='text/css' rel='stylesheet' href='style.css'
+  meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+
 html
-  head
-    title US Electoral College Map
-    link rel="shortcut icon" href="favicon.ico"
-    link type='text/css' rel='stylesheet' href='style.css'
-    link type='text/css' rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
 
   body
-    table width='100%' style='height: 6vh;'
-      tr
-        th
-          h1#demsTotal style='color: #ABDFFF;'
-        th
-          h1#neutralTotal style='color: #DADAD0; text-shadow: 1px 1px 1px #999'
-        th
-          h1#GOPTotal style='color: #FF0000; text-shadow: 1px 1px 1px #999'
+    .container-fluid
+      .row
+        .col-sm-10.col-sm-push-2
+          table width='100%'
+            tr
+              th
+                h1#demsTotal style='color: #ABDFFF;'
+              th
+                h1#neutralTotal style='color: #DADAD0; text-shadow: 1px 1px 1px #999'
+              th
+                h1#GOPTotal style='color: #FF0000; text-shadow: 1px 1px 1px #999'
 
-    div id="container" style="position: relative; width: 100vw; height: 80vh;"
+          div id="container"
 
-    h3.text-center style='height: 13vz;' US Electoral College Map
+          h3.text-center style='margin-bottom: 1em;' US Electoral College Map
 
-    .btn-group#statesList
-      .btn.btn-link Loading..
+        .col-sm-2.col-sm-pull-10
+          .btn-group#statesList
+            .btn.btn-link Loading..
 
     script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"
     script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.js"
     script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.8/datamaps.usa.js'
+    script type='text/javascript' src='2017-presidential-election-results.js'
     script type='text/javascript' src='main.js'
