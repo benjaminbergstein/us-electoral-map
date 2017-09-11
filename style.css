@@ -1,10 +1,22 @@
-th {
-  text-align: center;
-}
-
 #demsTotal, #goptotal, #neutralTotal {
   text-shadow: 1px 1px 1px #999;
   text-align: center;
+}
+
+#demsTotal {
+ color: #ABDFFF;
+}
+
+#neutralTotal {
+ color: #DADAD0;
+}
+
+#GOPTotal {
+ color: #FF0000;
+}
+
+#pageTitle {
+  margin-bottom: 1em;
 }
 
 #statesList.btn-group > .btn.btn-link {
