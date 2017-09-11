@@ -25,11 +25,11 @@ StateView.prototype.setData = function() {
 StateView.prototype.setEventListener = function() {
   var stateView, element;
   stateView = this;
-  element = this.element;
+  element = stateView.element;
   element.addEventListener('click', function() {
     stateView.toggle();
   });
-  this.setData();
+  stateView.setData();
 };
 
 StateView.prototype.toggle = function() {
@@ -37,7 +37,7 @@ StateView.prototype.toggle = function() {
   application = this.application;
   stateName = this.stateName;
   
-  currentFill = this.application.data[stateName].fillKey;
+  currentFill = application.data[stateName].fillKey;
 
   if (currentFill === undefined || currentFill > 2) {
     newFill = 1;
