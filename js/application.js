@@ -12,6 +12,20 @@ Application.prototype.initialize = function() {
   
   container.innerHTML = '';
   
+  application.renderMap();
+  
+  window.addEventListener('resize', function() {
+    application.initialize();
+  });
+  
+  application.statesListView = new StatesListView(this);
+  application.render();
+};
+
+Application.prototype.renderMap = function() {
+  var application;
+  application = this;
+  
   application.map = new Datamap({
     element: container,
     scope: 'usa',
@@ -34,13 +48,6 @@ Application.prototype.initialize = function() {
       });
     }
   });
-  
-  window.addEventListener('resize', function() {
-    application.initialize();
-  });
-  
-  application.statesListView = new StatesListView(this);
-  application.render();
 };
 
 Application.prototype.render = function() {
