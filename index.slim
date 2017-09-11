@@ -2,18 +2,26 @@ html
   head
     title US Electoral College Map
     link rel="shortcut icon" href="favicon.ico"
+    link type='text/css' rel='stylesheet' href='style.css'
     link type='text/css' rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
 
   body
-    div style="width: 100vw; height: 6vh;"
-      .row
-        h1.text-center.col-sm-4#demsTotal style='color: #ABDFFF; text-shadow: 1px 1px 1px #999'
-        h1.text-center.col-sm-4#neutralTotal style='color: #DADAD0; text-shadow: 1px 1px 1px #999'
-        h1.text-center.col-sm-4#GOPTotal style='color: #FF0000; text-shadow: 1px 1px 1px #999'
+    table width='100%' style='height: 6vh;'
+      tr
+        th
+          h1#demsTotal style='color: #ABDFFF;'
+        th
+          h1#neutralTotal style='color: #DADAD0; text-shadow: 1px 1px 1px #999'
+        th
+          h1#GOPTotal style='color: #FF0000; text-shadow: 1px 1px 1px #999'
 
-    div id="container" style="position: relative; width: 100vw; height: 87vh;"
+    div id="container" style="position: relative; width: 100vw; height: 80vh;"
 
-    h3.text-center style='height: 4.5vz;' US Electoral College Map
+    h3.text-center style='height: 13vz;' US Electoral College Map
+
+    .btn-group#statesList
+      .btn.btn-link Loading..
+
     script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"
     script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.js"
     script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.8/datamaps.usa.js'

@@ -1,0 +1,15 @@
+th {
+  text-align: center;
+}
+
+#demsTotal, #goptotal, #neutralTotal {
+  text-shadow: 1px 1px 1px #999;
+  text-align: center;
+}
+
+#statesList.btn-group > .btn.btn-link {
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
