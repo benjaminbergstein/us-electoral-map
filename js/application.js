@@ -6,20 +6,30 @@ function Application(data) {
   application.helper = new ApplicationHelper(application);
 }
 
+Application.Blue = '#ABDFFF';
+Application.Neutral = '#DADAD0';
+Application.Red = '#FF0000';
+
+Application.PossibleFills = {
+  defaultFill: Application.Neutral,
+  1: Application.Neutral,
+  2: Application.Blue,
+  3: Application.Red
+};
+
 Application.prototype.initialize = function() {
   var application;
   application = this;
+  application.statesListView = new StatesListView(this);
   
   container.innerHTML = '';
   
   application.renderMap();
+  application.updateAllWidgets();
   
   window.addEventListener('resize', function() {
     application.initialize();
   });
-  
-  application.statesListView = new StatesListView(this);
-  application.render();
 };
 
 Application.prototype.renderMap = function() {
@@ -31,7 +41,7 @@ Application.prototype.renderMap = function() {
     scope: 'usa',
     data: application.data,
     
-    fills: PossibleFills,
+    fills: Application.PossibleFills,
     
     geographyConfig: {
       highlightOnHover: false,
@@ -50,7 +60,7 @@ Application.prototype.renderMap = function() {
   });
 };
 
-Application.prototype.render = function() {
+Application.prototype.updateAllWidgets = function() {
   var application;
   application = this;
   application.map.updateChoropleth(application.data);

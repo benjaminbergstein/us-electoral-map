@@ -1,24 +1,18 @@
 function StatesListView(application) {
   this.application = application;
+  this.element = statesList;
 }
 
 StatesListView.prototype.render = function() {
-  var application, html, helper;
+  var application, helper;
   application = this.application;
-  html = '';
   helper = this.application.helper;
   
+  this.element.innerHTML = '';
+  
   helper.forEachState(function(stateName) {
-    var state;
-    state = new StateView(application, stateName);
-    html = html + state.render();
-  });
-  
-  statesList.innerHTML = html;
-  
-  helper.forEachState(function(state) {
-    var state;
-    state = new StateView(application, state);
-    state.initialize();
+    var stateView;
+    stateView = new StateView(application, stateName);
+    stateView.render();
   });
 };
