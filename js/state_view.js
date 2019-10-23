@@ -13,7 +13,7 @@ StateView.prototype.render = function() {
   if (!this.element) {
     stateName = this.stateName;
     element = document.createElement('div');
-    element.classList.add('btn', 'btn-link', 'xs-block');
+    element.classList.add('State');
     element.id = stateName;
     element.innerHTML = stateName;
     this.element = element;

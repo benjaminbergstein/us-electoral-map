@@ -8,7 +8,7 @@ const options = mode === 'development'
 module.exports = {
   ...options,
   mode,
-  entry: path.resolve(__dirname, './js/main.js'),
+  entry: './js/index.js',
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname),

@@ -25,8 +25,8 @@ html
           h3.text-center#pageTitle US Electoral College Map
 
         .col-sm-2.col-sm-pull-10
-          .btn-group#statesList
-            .btn.btn-link Loading..
+          #statesList style="display: flex; flex-wrap: wrap;"
+            span Loading..
 
           hr
           p
@@ -37,6 +37,9 @@ html
 
           p
             small
-              copyright &copy; Copyright 2017 Benjamin Bergstein
+              copyright
+                span &copy; Copyright 2017-2019
+                br
+                span Benjamin Bergstein
 
     script type='text/javascript' src='index.js'
