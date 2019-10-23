@@ -8,9 +8,9 @@ const options = mode === 'development'
 module.exports = {
   ...options,
   mode,
-  entry: './js/index.js',
+  entry: './index.js',
   output: {
-    filename: 'index.js',
+    filename: '../index.js',
     path: path.resolve(__dirname),
   },
 };

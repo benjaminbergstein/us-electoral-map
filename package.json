@@ -6,9 +6,9 @@
   "author": "Benjamin Bergstein <bennyjbergstein+github@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config-file=./webpack.config.js",
-    "build:dev": "DEV=1 webpack --config-file=./webpack.config.js",
-    "start": "http-server"
+    "build": "webpack --config-file=./src/webpack.config.js",
+    "build:dev": "DEV=1 webpack --config-file=./src/webpack.config.js",
+    "start": "yarn run http-server"
   },
   "dependencies": {
     "d3": "^5.12.0",
