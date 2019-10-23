@@ -37,3 +37,12 @@
     min-height: 72vh;
   }
 }
+
+.State {
+  display: flex;
+  flex: 0 0 20%;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  line-height: 2.5;
+}

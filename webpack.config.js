@@ -1,9 +1,14 @@
 const path = require('path');
 
+const mode = process.env.DEV === '1' ? 'development' : 'production';
+
+const options = mode === 'development'
+  ? { devtool: 'inline-source-map' } : {};
+
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
-  entry: path.resolve(__dirname, './js/main.js'),
+  ...options,
+  mode,
+  entry: './js/index.js',
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname),

@@ -1,17 +1,16 @@
-import ApplicationHelper from './application_helper';
 import StatesListView from './states_list_view';
 import StateView from './state_view';
 import TotalsView from './totals_view';
 import { PossibleFills } from './constants';
 import Datamap from "datamaps/dist/datamaps.usa.js";
 
+const POPUP_TEMPLATE = (state, data) => `<span style="color: white; font-weight: 900; text-shadow: 0 0 1px #000, 1px 1px 1px #000;">${state.properties.name}: ${data['Electoral Votes']}</span>`;
 
 class Application {
   constructor(data) {
-    const application = this.application = this;
+    this.application = this;
     this.data = data;
-    this.totalsView = new TotalsView(application);
-    this.helper = new ApplicationHelper(application);
+    this.totalsView = new TotalsView(this);
     this.initialize = this.initialize.bind(this);
     this.renderMap = this.renderMap.bind(this);
     this.updateAllWidgets = this.updateAllWidgets.bind(this);
@@ -35,7 +34,7 @@ class Application {
       fills: PossibleFills,
       geographyConfig: {
         highlightOnHover: false,
-        popupTemplate: this.helper.popupTemplate
+        popupTemplate: POPUP_TEMPLATE,
       },
       done: (datamap) => {
         const svg = datamap.svg;
