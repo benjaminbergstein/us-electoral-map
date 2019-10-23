@@ -4,7 +4,7 @@ Simple, interactive map using D3 and Datamaps to see who wins the presidency wit
 
 Live version is running on github pages: [benastan.github.io/us-electoral-map](http://benastan.github.io/us-electoral-map)
 
-<img src="screenshot.png" />
+<img src="docs/screenshot.png" />
 
 # Run the app
 

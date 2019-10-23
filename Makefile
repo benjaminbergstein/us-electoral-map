@@ -1,2 +1,2 @@
 build:
-	docker build . -t benbergstein/us-electoral-map
+	docker build . -t benbergstein/us-electoral-map:latest

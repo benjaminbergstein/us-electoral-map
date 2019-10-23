@@ -3,6 +3,5 @@
 require 'slim'
 require 'pathname'
 
-result = Slim::Template.new("index.slim").render()
+result = Slim::Template.new("./src/index.slim").render()
 Pathname('index.html').write(result)
-
