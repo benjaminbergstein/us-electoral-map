@@ -1,22 +1,23 @@
 import StateView from './state_view';
 
-function StatesListView(application) {
-  this.application = application;
-  this.element = statesList;
-}
+class StatesListView {
+  constructor(application) {
+    this.application = application;
+    this.element = statesList;
+    this.render = this.render.bind(this);
+  }
 
-StatesListView.prototype.render = function() {
-  var application, helper;
-  application = this.application;
-  helper = this.application.helper;
+  render() {
+    const { application, element } = this;
+    const { helper } = application;
 
-  this.element.innerHTML = '';
+    element.innerHTML = '';
 
-  helper.forEachState(function(stateName) {
-    var stateView;
-    stateView = new StateView(application, stateName);
-    stateView.render();
-  });
+    Object.entries(application.data).forEach(([stateName]) => {
+      const stateView = new StateView(application, stateName);
+      stateView.render();
+    });
+  }
 };
 
 export default StatesListView;
