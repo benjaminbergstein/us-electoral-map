@@ -1,3 +1,7 @@
 .idea
 junk*
 .DS_STORE
+node_modules
+yarn-error.log
+*.swp
+*.swo

@@ -1,3 +1,5 @@
+import { PossibleFills } from './constants';
+
 function StateView(application, stateName) {
   this.application = application;
   this.stateName = stateName;
@@ -7,7 +9,7 @@ function StateView(application, stateName) {
 
 StateView.prototype.render = function() {
   var stateName, element;
-  
+
   if (!this.element) {
     stateName = this.stateName;
     element = document.createElement('div');
@@ -17,7 +19,7 @@ StateView.prototype.render = function() {
     this.element = element;
     this.parent.appendChild(this.element);
   }
-  
+
   this.setData();
   this.setEventListener();
 };
@@ -26,18 +28,18 @@ StateView.prototype.setData = function() {
   var key, datum;
   key = this.stateName;
   datum = this.application.data[key];
-  this.element.style.backgroundColor = Application.PossibleFills[datum.fillKey];
+  this.element.style.backgroundColor = PossibleFills[datum.fillKey];
 };
 
 StateView.prototype.setEventListener = function() {
   var stateView, element;
   stateView = this;
   element = stateView.element;
-  
+
   element.addEventListener('click', function() {
     stateView.toggle();
   });
-  
+
   stateView.setData();
 };
 
@@ -45,7 +47,7 @@ StateView.prototype.toggle = function() {
   var application, stateName, currentFill, newFill;
   application = this.application;
   stateName = this.stateName;
-  
+
   currentFill = application.data[stateName].fillKey;
 
   if (currentFill === undefined || currentFill > 2) {
@@ -53,7 +55,9 @@ StateView.prototype.toggle = function() {
   } else {
     newFill = currentFill + 1;
   }
-  
+
   application.data[stateName].fillKey = newFill;
   application.updateAllWidgets();
 };
+
+export default StateView;

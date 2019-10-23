@@ -9,10 +9,10 @@ TotalsView.prototype.calculate = function() {
   totals.GOPTotal = 0;
   totals.demsTotal = 0;
   totals.neutralTotal = 0;
-  
+
   for (i in data) {
     var datum = data[i];
-    
+
     if (datum.fillKey === 1) {
       totals.neutralTotal += datum['Electoral Votes'];
     } else if (datum.fillKey === 2) {
@@ -21,8 +21,10 @@ TotalsView.prototype.calculate = function() {
       totals.GOPTotal += datum['Electoral Votes'];
     }
   }
-  
+
   GOPTotal.innerHTML = totals.GOPTotal;
   demsTotal.innerHTML = totals.demsTotal;
   neutralTotal.innerHTML = totals.neutralTotal;
 };
+
+export default TotalsView;
