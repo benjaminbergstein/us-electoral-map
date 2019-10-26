@@ -1,23 +1,45 @@
 import React from 'react';
 import Box from './Box';
+import { partyColors } from './constants'
+
+const PartyTotal = ({ party }) => (
+  <Box
+    display='flex'
+    flex="0 0 33%"
+    justifyContent='center'
+    alignItems='center'
+  >
+    <h1
+      id={`${party}Total`}
+      style={{
+        color: partyColors[party],
+        padding: '0 2px',
+        textShadow: '0px 1px 1px #444',
+        textAlign: 'center',
+      }}></h1>
+  </Box>
+);
 
 const Totals = () => (
   <Box display='flex' width="100%">
-    <Box display='flex' flex="0 0 33%" justifyContent='center'>
-      <h1 id="demsTotal"></h1>
-    </Box>
-    <Box display='flex' flex="0 0 33%" justifyContent='center'>
-      <h1 id="neutralTotal"></h1>
-    </Box>
-    <Box display='flex' flex="0 0 33%" justifyContent='center'>
-      <h1 id="GOPTotal"></h1>
-    </Box>
+    <PartyTotal party='dems' />
+    <PartyTotal party='neutral' />
+    <PartyTotal party='GOP' />
   </Box>
 );
 
 const Container = () => (<div id="container"></div>);
 
-const Title = () => (<h1 style={{ fontSize: '1.25rem', textWrap: 'nowrap' }}>2016 U.S Electoral College Map</h1>);
+const Title = () => (
+  <h1 style={{
+    lineHeight: '1.25',
+    padding: '0 10px',
+    fontSize: '1.25rem',
+    textWrap: 'nowrap',
+  }}>
+    2016 U.S Electoral College Map
+  </h1>
+);
 
 const StatesList = () => (
   <div>
@@ -32,7 +54,7 @@ const Copyright = () => (
     <Box>
       <small>
         <copyright>
-          &copy; Copyright 2017-2019, Benjamin Bergstein
+          &copy;2017-2019 Ben Bergstein
         </copyright>
       </small>
       &nbsp;&nbsp;•&nbsp;&nbsp;
@@ -61,7 +83,7 @@ const Section = ({ height, flex, children, ...props }) => (
 )
 
 const Wrapper = ({ children }) => (
-  <Box display="flex" flexDirection='column' height='100%' style={{ minHeight: '550px' }}>
+  <Box display="flex" flexDirection='column' height='100%' style={{ minHeight: '65vw' }}>
     {children}
   </Box>
 );
