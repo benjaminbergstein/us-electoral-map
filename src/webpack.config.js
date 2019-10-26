@@ -1,16 +1,40 @@
 const path = require('path');
 
-const mode = process.env.DEV === '1' ? 'development' : 'production';
+// const options = mode === 'development'
+//   ? { devtool: 'inline-source-map' } : {};
 
-const options = mode === 'development'
-  ? { devtool: 'inline-source-map' } : {};
+const target = process.env.TARGET;
+
+const entries = {
+  html: './src/renderHtml.js',
+};
+
+const output = {
+  html: '../render.js',
+};
 
 module.exports = {
-  ...options,
-  mode,
-  entry: './index.js',
+  // ...options,
+  entry: entries[target] || './src/index.js',
   output: {
-    filename: '../index.js',
+    filename: output[target] || '../index.js',
     path: path.resolve(__dirname),
+  },
+  externals: {
+    fs: 'commonjs fs'
+  },
+  module: {
+    rules: [
+      {
+        exclude: /node_modules/,
+        test: /.js$/,
+        use: {
+          loader: 'babel-loader',
+          query: {
+            presets: ['@babel/env', '@babel/react'],
+          },
+        }
+      },
+    ],
   },
 };

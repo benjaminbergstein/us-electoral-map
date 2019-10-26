@@ -2,7 +2,7 @@
 
 Simple, interactive map using D3 and Datamaps to see who wins the presidency with any subset of US states.
 
-Live version is running on github pages: [benastan.github.io/us-electoral-map](http://benastan.github.io/us-electoral-map)
+Live version is running on github pages: [benjaminbergstein.github.io/us-electoral-map](http://benastan.github.io/us-electoral-map)
 
 <img src="docs/screenshot.png" />
 
