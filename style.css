@@ -1,24 +1,7 @@
 body, html {
   margin: 0;
   height: 100%;
-  min-height: 800px;
-}
-
-#demsTotal, #goptotal, #neutralTotal {
-  text-shadow: 1px 1px 1px #999;
-  text-align: center;
-}
-
-#demsTotal {
- color: #ABDFFF;
-}
-
-#neutralTotal {
- color: #DADAD0;
-}
-
-#GOPTotal {
- color: #FF0000;
+  font-family: sans-serif;
 }
 
 #container {
@@ -28,9 +11,11 @@ body, html {
 
 .State {
   display: flex;
+  text-shadow: 0px 1px 1px #444;
   justify-content: center;
   padding: 0 10px;
   color: white;
   cursor: pointer;
   line-height: 2.5;
+  font-weight: bold;
 }
