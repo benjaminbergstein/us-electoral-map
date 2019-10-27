@@ -16,6 +16,8 @@ const PartyTotal = ({ party }) => (
         padding: '0 2px',
         textShadow: '0px 1px 1px #444',
         textAlign: 'center',
+        fontSize: '1.15rem',
+        margin: 0,
       }}></h1>
   </Box>
 );
@@ -35,7 +37,8 @@ const Title = () => (
     lineHeight: '1.25',
     padding: '0 10px',
     fontSize: '1.25rem',
-    textWrap: 'nowrap',
+    margin: '0.75rem',
+    whiteSpace: 'nowrap',
   }}>
     2016 U.S Electoral College Map
   </h1>
@@ -99,7 +102,7 @@ const Content = () => (
         <Box display='flex' flex="0 0 50%" alignItems='center'>
           <Title />
         </Box>
-        <Box display='flex' flex="0 0 50%">
+        <Box display='flex' flex="0 1 50%">
           <Totals />
         </Box>
       </Box>

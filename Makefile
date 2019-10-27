@@ -11,8 +11,11 @@ build-js:
 build-html:
 	${COMPOSE_CMD} run webserver build:html
 
-build: build-image build-js build-html
+build: build-image install build-js build-html
 
-develop:
-	${COMPOSE_CMD} run webserver build:html install
+install:
+	${COMPOSE_CMD} run webserver install
+
+develop: install
+	${COMPOSE_CMD} run webserver build:html
 	${COMPOSE_CMD} up -d
