@@ -38,7 +38,6 @@ const Title = () => (
     padding: '0 10px',
     fontSize: '1.25rem',
     margin: '0.75rem',
-    whiteSpace: 'nowrap',
   }}>
     2016 U.S Electoral College Map
   </h1>
@@ -52,22 +51,30 @@ const StatesList = () => (
   </div>
 );
 
+const FooterItem = ({ children }) => (
+  <Box flex="0 1 0" style={{ padding: '5px 0', marginLeft: '15px', whiteSpace: 'nowrap' }}>
+    {children}
+  </Box>
+);
+
 const Copyright = () => (
   <>
-    <Box>
-      <small>
+    <Box display="flex">
+      <FooterItem>
+        <a href='https://github.com/benjaminbergstein/us-electoral-map' target="_BLANK">
+          <img src="docs/github.png" height="14px" width="14px" alt="Source on Github" title="Source on Github" />
+        </a>
+      </FooterItem>
+      <FooterItem>
+        <a href='https://goo.gl/forms/THky9dqIPI9AezJb2' target="_BLANK" style={{ textDecoration: 'none' }}>
+          Feedback
+        </a>
+      </FooterItem>
+      <FooterItem>
         <copyright>
-          &copy;2017-2019 Ben Bergstein
+          &copy; 2017-2019 Ben Bergstein
         </copyright>
-      </small>
-      &nbsp;&nbsp;•&nbsp;&nbsp;
-      <a href='https://goo.gl/forms/THky9dqIPI9AezJb2' target="_BLANK">
-        <small>
-          <i class="glyphicon glyphicon-send">
-            Feedback
-          </i>
-        </small>
-      </a>
+      </FooterItem>
     </Box>
   </>
 );
@@ -91,6 +98,17 @@ const Wrapper = ({ children }) => (
   </Box>
 );
 
+const InfoBar = () => (
+    <Box display='flex' width="100%">
+      <Box display='flex' flex="0 0 50%" alignItems='center'>
+        <Title />
+      </Box>
+      <Box display='flex' flex="0 1 50%">
+        <Totals />
+      </Box>
+    </Box>
+);
+
 const Content = () => (
   <Wrapper>
     <Section style={{ overflowX: 'scroll' }}>
@@ -98,17 +116,12 @@ const Content = () => (
     </Section>
 
     <Section>
-      <Box display='flex'>
-        <Box display='flex' flex="0 0 50%" alignItems='center'>
-          <Title />
-        </Box>
-        <Box display='flex' flex="0 1 50%">
-          <Totals />
-        </Box>
+      <Box display="flex" height="0" alignItems="baseline" width="100%">
+        <InfoBar />
       </Box>
     </Section>
 
-    <Section flex='1'>
+    <Section flex='1' style={{ position: 'relative' }}>
       <Container />
     </Section>
 

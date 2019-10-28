@@ -1,7 +1,7 @@
 import Application from './application.js';
-import RESULTS from './results/president/2017.json';
+import RESULTS from './results/president';
 
-window.application = new Application(RESULTS);
+window.application = new Application(RESULTS.Results2017);
 window.application.initialize();
 setTimeout(() => {
   window.application.initialize();
