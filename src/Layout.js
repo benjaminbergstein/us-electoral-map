@@ -39,7 +39,7 @@ const Title = () => (
     fontSize: '1.25rem',
     margin: '0.75rem',
   }}>
-    2016 U.S Electoral College Map
+    2020 U.S Electoral College Map - Sanders vs. Trump
   </h1>
 );
 
