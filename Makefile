@@ -1,21 +1,32 @@
+ENVIRONMENT=development
+PROJECT=electoral_map
+
 define COMPOSE_CMD
-docker-compose -f ./dev/docker-compose.yml
+docker-compose -f ./dev/docker-compose.yml --project-directory . -p ${PROJECT}_${ENVIRONMENT}
 endef
 
 build-image:
 	docker build . -t benbergstein/us-electoral-map:latest
 
-build-js:
-	${COMPOSE_CMD} run webserver build
+build-app:
+	${COMPOSE_CMD} run app build
+	${COMPOSE_CMD} run app export
 
-build-html:
-	${COMPOSE_CMD} run webserver build:html
-
-build: build-image install build-js build-html
+build: build-image
 
 install:
-	${COMPOSE_CMD} run webserver install
+	${COMPOSE_CMD} run app install
 
-develop: install
-	${COMPOSE_CMD} run webserver build:html
+console:
+	${COMPOSE_CMD} exec app /bin/bash
+
+develop: build-html up
+
+up:
 	${COMPOSE_CMD} up -d
+
+logs:
+	${COMPOSE_CMD} logs -f app
+
+down:
+	${COMPOSE_CMD} down

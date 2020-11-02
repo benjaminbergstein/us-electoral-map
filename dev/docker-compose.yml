@@ -1,9 +1,18 @@
 version: '3.7'
 
 services:
-    webserver:
+    app:
         image: benbergstein/us-electoral-map:latest
+        command: ["dev"]
         volumes:
-            - ..:/app
+            - ./app:/app
         ports:
-            - "8080:8080"
+            - "8080:3000"
+        networks:
+          - default
+          - nginx-proxy
+
+networks:
+  default:
+  nginx-proxy:
+    external: true

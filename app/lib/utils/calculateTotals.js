@@ -1,11 +1,4 @@
-class TotalsView {
-  constructor(application) {
-    this.application = application;
-  }
-
-  calculate() {
-    let i
-    const data = this.application.data;
+const calculate = (data) => {
     const totals = {
       GOPTotal: 0,
       demsTotal: 0,
@@ -22,10 +15,7 @@ class TotalsView {
       }
     })
 
-    GOPTotal.innerHTML = totals.GOPTotal;
-    demsTotal.innerHTML = totals.demsTotal;
-    neutralTotal.innerHTML = totals.neutralTotal;
-  }
+  return totals
 }
 
-export default TotalsView;
+export default calculate
