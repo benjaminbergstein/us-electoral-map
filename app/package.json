@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "serve": "yarn run http-server out -p 3000",
+    "start": "next start"
+  },
+  "dependencies": {
+    "d3": "^6.2.0",
+    "datamaps": "^0.5.9",
+    "isomorphic-unfetch": "^3.1.0",
+    "next": "10.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-icons": "^3.11.0",
+    "topojson-client": "^3.1.0",
+    "http-server": "^0.12.3"
+  }
+}
