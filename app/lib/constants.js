@@ -2,6 +2,17 @@ const Blue = 'cornflowerblue';
 const Neutral = 'lightslategray';
 const Red = 'indianred';
 
+const Maps = [
+  "2020 Tossup",
+  "2020 - Possible EC Tie",
+  "2020 - My Prediction",
+  "2016 Trump v Clinton",
+  "2012 Obama v Romney",
+  "2008 Obama v McCain",
+]
+
+const DefaultMap = Maps[0]
+
 const PossibleFills = {
   defaultFill: Neutral,
   1: Neutral,
@@ -15,4 +26,4 @@ const partyColors = {
   GOP: Red,
 };
 
-export { Blue, Neutral, Red, PossibleFills, partyColors };
+export { DefaultMap, Maps, Blue, Neutral, Red, PossibleFills, partyColors };

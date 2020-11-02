@@ -1,10 +1,11 @@
 import React, { useState, useLayoutEffect, useEffect, useContext }  from 'react';
 import fetch from 'isomorphic-unfetch'
+import { DefaultMap } from './constants'
 
 const DataContext = React.createContext({})
 
 const initialData = typeof window === "undefined" ? {} : JSON.parse(window.localStorage.getItem('uselectoralmap')) ?? {}
-const initialWhichData = initialData.whichData || '2020 Presidential Election'
+const initialWhichData = initialData.whichData || DefaultMap
 const initialUserSelections = initialData.selections || {}
 
 const calculateTotals = (data) => Object.entries(data).reduce((

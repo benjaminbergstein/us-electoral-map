@@ -3,8 +3,6 @@ version: '3.7'
 services:
     app:
         image: benbergstein/us-electoral-map:latest
-        ports:
-            - "8080:3000"
         networks:
           - default
           - nginx-proxy

@@ -7,20 +7,13 @@ import { FaUndoAlt } from 'react-icons/fa'
 
 import States from './States'
 import Totals from './Totals'
+import { Maps } from './constants'
 import DataContext, { DataProvider } from './DataContext'
 
 const Map = dynamic(
   () => import('./Map'),
   { ssr: false }
 )
-
-const Options = [
-  "2008 Presidential Election",
-  "2012 Presidential Election",
-  "2016 Presidential Election",
-  "2020 Presidential Election",
-  "2020 Presidential Election - Predictions",
-]
 
 const Button = ({ onClick, style = {}, children }) => <button
   onClick={() => onClick()}
@@ -51,7 +44,7 @@ const Title = () => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Select
             value={title}
-            options={Options}
+            options={Maps}
             maxWidth={width ? width - 100 : undefined}
             onChange={changeData}
           />
