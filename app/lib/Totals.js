@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { HiBadgeCheck } from 'react-icons/hi'
 import DataContext from './DataContext'
 import { partyColors } from './constants'
 import Box from './Box';
@@ -8,13 +9,32 @@ const PartyTotal = ({ party }) => {
 
   if (!totals) return null
 
-  return <h1
+  return totals[party] >= 270 ? <h1
+    id={`${party}Total`}
+    style={{
+      flex: '1',
+      background: partyColors[party],
+      color: 'white',
+      padding: '0 2px',
+      textShadow: '0px 1px 1px #444',
+      textAlign: 'center',
+      fontSize: '1.15rem',
+      padding: '20px 0',
+      margin: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <HiBadgeCheck style={{ marginRight: '10px' }} />
+      {totals[party]}
+    </h1> : <h1
     id={`${party}Total`}
     style={{
       flex: '1',
       color: partyColors[party],
       padding: '0 2px',
       textShadow: '0px 1px 1px #444',
+      padding: '20px 0',
       textAlign: 'center',
       fontSize: '1.15rem',
       margin: 0,

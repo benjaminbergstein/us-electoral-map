@@ -7,13 +7,36 @@ const initialData = typeof window === "undefined" ? {} : JSON.parse(window.local
 const initialWhichData = initialData.whichData || '2020 Presidential Election'
 const initialUserSelections = initialData.selections || {}
 
-const useData = () => {
+const calculateTotals = (data) => Object.entries(data).reduce((
+  acc,
+  [stateName, data]
+) => {
+  const fillKey = data.fillKey
+  const electoralVotes = data['Electoral Votes']
+  const group = fillKey === 1 ? 'neutral' : (fillKey === 2 ? 'dems' : 'GOP')
+
+  return {
+    ...acc,
+    [group]: acc[group] + electoralVotes,
+  }
+}, {
+  GOP: 0,
+  dems: 0,
+  neutral: 0,
+})
+
+const useData = (initialData) => {
   const [whichData, setWhichData] = useState(initialWhichData)
-  const [data, setData] = useState(undefined)
-  const [userSelections, setUserSelections] = useState(initialUserSelections)
+  const [data, setData] = useState(initialData)
+  const [userSelections, setUserSelections] = useState({})
   const [windowSize, setWindowSize] = useState([])
 
-  if (typeof window === "undefined") return { windowSize }
+  if (typeof window === "undefined") return {
+    data,
+    title: whichData,
+    windowSize,
+    totals: calculateTotals(data),
+  }
 
   useEffect(() => {
     fetch(`results/president/${whichData}.json`)
@@ -22,6 +45,7 @@ const useData = () => {
   }, [whichData])
 
   useEffect(() => {
+    setUserSelections(initialUserSelections)
     setWindowSize([window.innerWidth, window.innerHeight])
 
     const listener = () => {
@@ -43,23 +67,7 @@ const useData = () => {
 
   console.debug(JSON.stringify(dataWithUserSelections))
 
-  const totals = Object.entries(dataWithUserSelections).reduce((
-    acc,
-    [stateName, data]
-  ) => {
-    const fillKey = data.fillKey
-    const electoralVotes = data['Electoral Votes']
-    const group = fillKey === 1 ? 'neutral' : (fillKey === 2 ? 'dems' : 'GOP')
-
-    return {
-      ...acc,
-      [group]: acc[group] + electoralVotes,
-    }
-  }, {
-    GOP: 0,
-    dems: 0,
-    neutral: 0,
-  })
+  const totals = calculateTotals(dataWithUserSelections)
 
   const updateUserSelection = (stateName) => {
     const state = dataWithUserSelections[stateName]
@@ -99,8 +107,9 @@ const useData = () => {
   }
 }
 
-export const DataProvider = ({ children }) => {
-  const data = useData()
+export const DataProvider = ({ initialData, children }) => {
+  const data = useData(initialData)
+  const { loading } = data
 
   return <DataContext.Provider value={data}>
     {children}

@@ -13,7 +13,7 @@ build-app:
 	${COMPOSE_CMD} run app export
 
 build: ENVIRONMENT=production
-build: build-image down up cp
+build: build-image down up cp down
 
 cp:
 	rm -rf out
