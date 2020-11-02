@@ -13,7 +13,7 @@ const useData = () => {
   const [userSelections, setUserSelections] = useState(initialUserSelections)
   const [windowSize, setWindowSize] = useState([])
 
-  if (typeof window === "undefined") return {}
+  if (typeof window === "undefined") return { windowSize }
 
   useEffect(() => {
     fetch(`results/president/${whichData}.json`)
@@ -22,6 +22,8 @@ const useData = () => {
   }, [whichData])
 
   useEffect(() => {
+    setWindowSize([window.innerWidth, window.innerHeight])
+
     const listener = () => {
       setWindowSize([window.innerWidth, window.innerHeight])
     }
@@ -32,7 +34,7 @@ const useData = () => {
     }
   }, [])
 
-  if (typeof data === "undefined") return { loading: true }
+  if (typeof data === "undefined") return { loading: true, windowSize }
 
   const dataWithUserSelections = {
     ...data,

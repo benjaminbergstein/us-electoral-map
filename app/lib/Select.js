@@ -1,11 +1,18 @@
 import React, { useRef } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 
-const Select = ({ value, onChange, options }) => {
+const Select = ({
+  value,
+  onChange,
+  options,
+  maxWidth = 200
+}) => {
   const selectRef = useRef(null)
 
   return <div style={{ position: 'relative', border: '1px solid lightgray', padding: '10px', borderRadius: '5px', display: 'flex', alignItems: 'center' }}>
-    {value}
+    <span style={{ whiteSpace:  'nowrap', textOverflow: 'ellipsis', maxWidth: `${maxWidth}px`, overflow: 'hidden' }}>
+      {value}
+    </span>
     <FaChevronDown style={{ marginLeft: '10px' }} />
     <select
       value={value}

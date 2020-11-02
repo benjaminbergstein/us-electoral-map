@@ -7,6 +7,9 @@ const boxOptions = ({
   flex,
   flexDirection,
   flexWrap,
+  flexGrow,
+  flexShrink,
+  flexBasis,
   width,
   height,
   style
@@ -20,6 +23,9 @@ const boxOptions = ({
   flexDirection,
   flex,
   flexWrap,
+  flexGrow,
+  flexShrink,
+  flexBasis,
 });
 
 const Box = ({ children, ...styleProps }) => (

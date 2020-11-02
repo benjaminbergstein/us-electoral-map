@@ -16,6 +16,7 @@ const Map = dynamic(
 
 const Options = [
   "2008 Presidential Election",
+  "2012 Presidential Election",
   "2016 Presidential Election",
   "2020 Presidential Election",
   "2020 Presidential Election - Predictions",
@@ -28,38 +29,46 @@ const Button = ({ onClick, style = {}, children }) => <button
 </button>
 
 const Title = () => {
-  const { title, resetUserSelections, changeData } = useContext(DataContext)
+  const { title, resetUserSelections, changeData, windowSize } = useContext(DataContext)
+  const width = windowSize[0]
+  const flexBasis = width && width < 500 ? `${width}px` : "33%"
 
-  return <div style={{ textAlign: 'center' }}>
-    <h1 style={{
-      lineHeight: '1.25',
-      padding: '0 10px',
-      fontSize: '1rem',
-      margin: '0.75rem',
-      color: 'lightslategray',
-    }}>
-      U.S Electoral College Map
-    </h1>
-    <h2 style={{ fontSize: '0.75rem', color: 'darkslategray' }}>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Select value={title} options={Options} onChange={changeData} />
-        <Button
-          onClick={() => resetUserSelections()}
-          style={{ marginLeft: '10px' }}
-        >
-          <FaUndoAlt />
-        </Button>
-      </div>
-    </h2>
-  </div>
-};
+  return <Box style={{ textAlign: 'center' }} display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-between" alignItems="center">
+    <Box flexGrow="1" flexShrink="1" flexBasis={flexBasis} style={{ margin: '3vh 0' }}>
+      <h1 style={{
+        lineHeight: '1.25',
+        padding: '0 10px',
+        fontSize: '1rem',
+        margin: '0',
+        color: 'lightslategray',
+        whiteSpace: 'nowrap',
+      }}>
+        U.S Electoral College Map
+      </h1>
+    </Box>
+    <Box flexGrow="1" flexShrink="1" flexBasis={flexBasis} style={{ margin: '3vh 0' }}>
+      <h2 style={{ fontSize: '0.75rem', color: 'darkslategray', margin: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Select
+            value={title}
+            options={Options}
+            maxWidth={width ? width - 100 : undefined}
+            onChange={changeData}
+          />
 
-const StatesList = () => {
-  const data = useContext(DataContext)
-
-  return <div style={{ display: 'flex', flexDirection: 'row', overflowX: 'scroll', width: '100vw' }}>
-    <States data={data}/>
-  </div>
+          <Button
+            onClick={() => resetUserSelections()}
+            style={{ marginLeft: '10px' }}
+          >
+            <FaUndoAlt />
+          </Button>
+        </div>
+      </h2>
+    </Box>
+    <Box flexGrow="1" flexShrink="1" flexBasis={flexBasis} style={{ margin: '3vh 0' }} display="flex">
+      <Totals />
+    </Box>
+  </Box>
 };
 
 const FooterItem = ({ children }) => (
@@ -104,22 +113,17 @@ const Wrapper = ({ children }) => (
 
 const InfoBar = () => (
   <Box>
-    <Box>
-      <Title />
-    </Box>
-    <Totals />
+    <Title />
   </Box>
 );
 
 const Content = () => <DataProvider>
   <Wrapper>
-    <StatesList />
+    <div style={{ display: 'flex', flexDirection: 'row', overflowX: 'scroll', width: '100vw' }}>
+      <States />
+    </div>
 
-    <Section>
-      <Box>
-        <InfoBar />
-      </Box>
-    </Section>
+    <InfoBar />
 
     <Box flex="1" style={{ overflowY: 'hidden' }}>
       {typeof window !== 'undefined' && <Map />}

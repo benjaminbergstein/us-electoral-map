@@ -1,8 +1,8 @@
-ENVIRONMENT=development
+ENVIRONMENT ?= development
 PROJECT=electoral_map
 
 define COMPOSE_CMD
-docker-compose -f ./dev/docker-compose.yml --project-directory . -p ${PROJECT}_${ENVIRONMENT}
+docker-compose -f ./dev/docker-compose.${ENVIRONMENT}.yml --project-directory . -p ${PROJECT}_${ENVIRONMENT}
 endef
 
 build-image:
@@ -12,11 +12,12 @@ build-app:
 	${COMPOSE_CMD} run app build
 	${COMPOSE_CMD} run app export
 
+build: ENVIRONMENT=production
 build: build-image down up cp
 
 cp:
 	rm -rf out
-	docker cp electoral_map_development_app_1:/app/out out
+	docker cp electoral_map_production_app_1:/app/out out
 	cp -r out/* docs
 
 install:

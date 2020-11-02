@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import React, { useContext, useEffect, useRef } from 'react';
 import DataContext from './DataContext'
 import { PossibleFills } from './constants';
@@ -23,6 +24,7 @@ const initalizeMap = (node, data) => {
     return map
   }
 }
+
 const Container = () => {
   const { data, windowSize, updateUserSelection } = useContext(DataContext)
   const ref = useRef(null)
