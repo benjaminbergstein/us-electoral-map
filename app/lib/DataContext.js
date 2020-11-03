@@ -32,7 +32,10 @@ const useData = (initialData) => {
   const [userSelections, setUserSelections] = useState({})
   const [windowSize, setWindowSize] = useState([])
 
+  const stateOrder = Object.keys(data)
+
   if (typeof window === "undefined") return {
+    stateOrder,
     data,
     title: whichData,
     windowSize,
@@ -59,7 +62,7 @@ const useData = (initialData) => {
     }
   }, [])
 
-  if (typeof data === "undefined") return { loading: true, windowSize }
+  if (typeof data === "undefined") return { loading: true, windowSize, stateOrder }
 
   const dataWithUserSelections = {
     ...data,
@@ -97,6 +100,7 @@ const useData = (initialData) => {
   }
 
   return {
+    stateOrder,
     title: whichData,
     totals,
     windowSize,

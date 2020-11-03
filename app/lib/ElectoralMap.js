@@ -112,9 +112,7 @@ const InfoBar = () => (
 
 const ElectoralMap = ({ initialData }) => <DataProvider initialData={initialData}>
   <Wrapper>
-    <div style={{ display: 'flex', flexDirection: 'row', overflowX: 'scroll', width: '100vw' }}>
-      <States />
-    </div>
+    <States />
 
     <InfoBar />
 

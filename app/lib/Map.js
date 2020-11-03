@@ -6,7 +6,7 @@ import { PossibleFills } from './constants';
 
 import Datamap from 'datamaps'
 
-const POPUP_TEMPLATE = (state, data) => `<span style="color: white; font-weight: 900; text-shadow: 0 0 1px #000, 1px 1px 1px #000;">${state.properties.name}: ${data['Electoral Votes']}</span>`;
+const POPUP_TEMPLATE = (state, data) => `<span style="position: relative; left: 30px; top: 200px; color: white; font-weight: 900; text-shadow: 0 0 1px #000, 1px 1px 1px #000;">${state.properties.name} (${data['Electoral Votes']})</span>`;
 
 const initalizeMap = (node, data) => {
   if (window !== undefined) {
@@ -16,7 +16,12 @@ const initalizeMap = (node, data) => {
       data,
       fills: PossibleFills,
       geographyConfig: {
-        highlightOnHover: false,
+        highlightOnHover: true,
+        highlightFillColor: false,
+        highlightBorderColor: "white",
+        highlightBorderOpacity: '0.65',
+        highlightBorderWidth: "4px",
+        highlightFillOpacity: '0.85',
         popupTemplate: POPUP_TEMPLATE,
       },
     })

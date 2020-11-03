@@ -7,6 +7,7 @@ const boxOptions = ({
   flex,
   flexDirection,
   flexWrap,
+  order,
   flexGrow,
   flexShrink,
   flexBasis,
@@ -20,6 +21,7 @@ const boxOptions = ({
   height,
   width,
   display,
+  order,
   flexDirection,
   flex,
   flexWrap,
@@ -28,8 +30,12 @@ const boxOptions = ({
   flexBasis,
 });
 
-const Box = ({ children, ...styleProps }) => (
-  <div style={boxOptions(styleProps)}>{children}</div>
+const Box = ({ onMouseEnter, onMouseLeave, onClick, children, ...styleProps }) => (
+  <div
+    onClick={onClick}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    style={boxOptions(styleProps)}>{children}</div>
 );
 
 export default Box;
