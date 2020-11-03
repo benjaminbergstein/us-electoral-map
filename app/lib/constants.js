@@ -3,7 +3,7 @@ const Neutral = 'lightslategray';
 const Red = 'indianred';
 
 const Maps = [
-  "2020 Tossup",
+  "2020 Battlegrounds",
   "2020 - Possible EC Tie",
   "2020 - My Prediction",
   "2016 Trump v Clinton",
