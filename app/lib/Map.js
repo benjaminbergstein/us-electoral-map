@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import DataContext from './DataContext'
 import { PossibleFills } from './constants';
 
@@ -30,6 +30,67 @@ const initalizeMap = (node, data) => {
   }
 }
 
+const Toggle = ({ background = 'white', onClick, children }) => (
+  <div
+    onClick={onClick}
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignContent: 'center',
+      boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.2)',
+      cursor: 'pointer',
+      borderRadius: '30px',
+      background: background,
+      color: 'black',
+      height: '30px',
+      width: '30px'
+    }}
+  >
+    {children}
+  </div>
+)
+
+const StateToggle = ({ stateName }) => {
+  const { data, updateUserSelection } = useContext(DataContext)
+
+  const color = PossibleFills[data[stateName].fillKey]
+
+  return <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignContent: 'center',
+      padding: '5px 15px',
+      width: '200px',
+    }}
+  >
+    {stateName} <Toggle onClick={() => updateUserSelection(stateName)} background={color} />
+  </div>
+}
+
+const Panel = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div style={{ position: 'absolute', top: '15px', left: '15px', background: 'white' }}>
+      {!isOpen && <Toggle onClick={() => setIsOpen(true)}>+</Toggle>}
+      {isOpen && <>
+        <Toggle onClick={() => setIsOpen(false)}>&times;</Toggle>
+        <div style={{
+          boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.2)',
+          marginTop: '15px',
+        }}>
+          <StateToggle stateName="ME1" />
+          <StateToggle stateName="ME2" />
+          <StateToggle stateName="NE2" />
+          <StateToggle stateName="DC" />
+          <StateToggle stateName="RI" />
+        </div>
+      </>}
+    </div>
+  )
+}
+
 const Container = () => {
   const { data, windowSize, updateUserSelection } = useContext(DataContext)
   const ref = useRef(null)
@@ -47,7 +108,10 @@ const Container = () => {
     });
   }, [data, ...windowSize])
 
-  return <div style={{ height: '100%' }} ref={ref}></div>
+  return <div style={{ position: 'relative', height: "100%" }}>
+    <Panel />
+    <div style={{ height: '100%' }} ref={ref}></div>
+  </div>
 };
 
 export default Container

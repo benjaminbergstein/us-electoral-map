@@ -6,6 +6,9 @@ const calculate = (data) => {
     };
 
     Object.entries(data).forEach(([stateName, datum]) => {
+      const { neutralTotal, demsTotal, GOPTotal } = totals
+      console.log(stateName, fillKey, datum['Electoral Votes'], neutralTotal, demsTotal, GOPTotal)
+
       if (datum.fillKey === 1) {
         totals.neutralTotal += datum['Electoral Votes'];
       } else if (datum.fillKey === 2) {

@@ -8,13 +8,19 @@ const initialData = typeof window === "undefined" ? {} : JSON.parse(window.local
 const initialWhichData = initialData.whichData || DefaultMap
 const initialUserSelections = initialData.selections || {}
 
+const FillMap = {
+  1: 'neutral',
+  2: 'dems',
+  3: 'GOP',
+}
+
 const calculateTotals = (data) => Object.entries(data).reduce((
   acc,
   [stateName, data]
 ) => {
   const fillKey = data.fillKey
   const electoralVotes = data['Electoral Votes']
-  const group = fillKey === 1 ? 'neutral' : (fillKey === 2 ? 'dems' : 'GOP')
+  const group = FillMap[fillKey]
 
   return {
     ...acc,
