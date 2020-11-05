@@ -30,12 +30,26 @@ const boxOptions = ({
   flexBasis,
 });
 
-const Box = ({ onMouseEnter, onMouseLeave, onClick, children, ...styleProps }) => (
+const Box = React.forwardRef(({
+  key,
+  id,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  children,
+  ...styleProps
+}, ref) => (
   <div
+    id={id}
+    key={key}
     onClick={onClick}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-    style={boxOptions(styleProps)}>{children}</div>
-);
+    ref={ref}
+    style={boxOptions(styleProps)}
+  >
+    {children}
+  </div>
+));
 
 export default Box;

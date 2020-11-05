@@ -6,15 +6,36 @@ import { PossibleFills } from './constants';
 import Box from './Box';
 
 const State = ({ stateName }) => {
-  const { stateOrder, data, updateUserSelection } = useContext(DataContext)
+  const { focusedState, stateOrder, data, updateUserSelection } = useContext(DataContext)
   const stateData = data[stateName]
+  const stateRef = useRef(null)
 
   const { fillKey } = stateData
   const [isHovered, setIsHovered] = React.useState(false)
   const fillColor = PossibleFills[fillKey]
   const electoralVotes = stateData['Electoral Votes']
 
+  if (typeof window !== "undefined") {
+    useLayoutEffect(() => {
+      console.log(focusedState)
+      console.log(stateRef)
+      if (stateRef.current === null) return
+
+      if (focusedState === stateName) {
+        stateRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        })
+        setIsHovered(true)
+      } else {
+        setIsHovered(false)
+      }
+    }, [focusedState])
+  }
+
   return <Box
+    ref={stateRef}
     flexBasis={`${electoralVotes*7}px`}
     flexShrink={0}
     flexGrow={1}
@@ -32,6 +53,7 @@ const State = ({ stateName }) => {
       cursor: 'pointer',
       marginRight: '1px',
       borderBottom: `8px solid ${isHovered ? fillColor : 'white'}`,
+      boxShadow: isHovered ? 'inset 1px 12px 13px -5px rgba(255, 255, 255, 0.4)' : undefined,
       background: fillColor,
       color: 'white',
       padding: '10px',

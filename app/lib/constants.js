@@ -1,6 +1,8 @@
 const Blue = 'cornflowerblue';
 const Neutral = 'lightslategray';
 const Red = 'indianred';
+const MissedRed = 'mediumvioletred'
+const MissedBlue = 'seagreen'
 
 const Maps = [
   "2020 Battlegrounds",
@@ -19,6 +21,8 @@ const PossibleFills = {
   1: Neutral,
   2: Blue,
   3: Red,
+  4: MissedRed,
+  5: MissedBlue,
 };
 
 const partyColors = {

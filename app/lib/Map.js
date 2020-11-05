@@ -6,7 +6,12 @@ import { PossibleFills } from './constants';
 
 import Datamap from 'datamaps'
 
-const POPUP_TEMPLATE = (state, data) => `<span style="position: relative; left: 30px; top: 200px; color: white; font-weight: 900; text-shadow: 0 0 1px #000, 1px 1px 1px #000;">${state.properties.name} (${data['Electoral Votes']})</span>`;
+const POPUP_TEMPLATE = (state, data) => `<div class="hoverinfo">
+  <strong>
+    <span style="font-size: 17px; color: ${PossibleFills[data['fillKey']]}">&#9632;</span> ${state.properties.name} (${data['Electoral Votes']} electoral votes)
+  </strong>
+</div>`
+
 
 const initalizeMap = (node, data) => {
   if (window !== undefined) {
@@ -92,7 +97,7 @@ const Panel = () => {
 }
 
 const Container = () => {
-  const { data, windowSize, updateUserSelection } = useContext(DataContext)
+  const { data, windowSize, updateUserSelection, setFocusedState } = useContext(DataContext)
   const ref = useRef(null)
   const mapRef = useRef(null)
 
@@ -103,9 +108,13 @@ const Container = () => {
     ref.current.innerHTML = ''
     mapRef.current = initalizeMap(ref.current, data)
 
-    mapRef.current.svg.selectAll('.datamaps-subunit').on('click', function(data) {
-      updateUserSelection(data.id)
-    });
+    mapRef.current.svg.selectAll('.datamaps-subunit')
+      .on('mouseenter', (data) => {
+        setFocusedState(data.id)
+      })
+      .on('click', function(data) {
+        updateUserSelection(data.id)
+      });
   }, [data, ...windowSize])
 
   return <div style={{ position: 'relative', height: "100%" }}>

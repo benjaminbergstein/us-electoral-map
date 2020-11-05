@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect, useEffect, useContext }  from 'react';
 import fetch from 'isomorphic-unfetch'
 import { DefaultMap } from './constants'
+import throttle from 'lodash/throttle'
 
 const DataContext = React.createContext({})
 
@@ -36,6 +37,7 @@ const useData = (initialData) => {
   const [whichData, setWhichData] = useState(initialWhichData)
   const [data, setData] = useState(initialData)
   const [userSelections, setUserSelections] = useState({})
+  const [focusedState, setFocusedState] = useState(false)
   const [windowSize, setWindowSize] = useState([])
 
   const stateOrder = Object.keys(data)
@@ -105,6 +107,7 @@ const useData = (initialData) => {
     setWhichData(newData)
   }
 
+  const throttledSetFocusedState = throttle(setFocusedState, 400)
   return {
     stateOrder,
     title: whichData,
@@ -115,6 +118,8 @@ const useData = (initialData) => {
     loading: false,
     resetUserSelections,
     changeData,
+    focusedState,
+    setFocusedState: throttledSetFocusedState,
   }
 }
 
