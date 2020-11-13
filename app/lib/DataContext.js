@@ -13,6 +13,8 @@ const FillMap = {
   1: 'neutral',
   2: 'dems',
   3: 'GOP',
+  4: 'GOP',
+  5: 'dems',
 }
 
 const calculateTotals = (data) => Object.entries(data).reduce((

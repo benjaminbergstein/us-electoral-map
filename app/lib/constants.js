@@ -2,16 +2,15 @@ const Blue = 'cornflowerblue';
 const Neutral = 'lightslategray';
 const Red = 'indianred';
 const MissedRed = 'mediumvioletred'
-const MissedBlue = 'seagreen'
+const MissedBlue = 'royalblue'
 
 const Maps = [
-  "2020 Calls",
-  "2020 Battlegrounds",
-  "2020 - Possible EC Tie",
+  "2020 Biden v Trump",
   "2020 - My Prediction",
   "2016 Trump v Clinton",
-  "2012 Obama v Romney",
+  "2012 Romney v Obama",
   "2008 Obama v McCain",
+  "National Popular Vote Interstate Compact",
 ]
 
 const DefaultMap = Maps[0]
